@@ -1,11 +1,11 @@
 var i18n = require('i18n');
 
-exports.register = function (plugin, options, next) {
+exports.register = function (server, options, next) {
     i18n.configure(options);
 
-    plugin.ext('onPreHandler', function(request, next){
+    server.ext('onPreHandler', function(request, reply){
         i18n.init(request);
-        next();
+        reply.continue();
     });
 
     next();
